@@ -34,7 +34,12 @@ export class UsersController {
     return this.usersService.create(newUserData);
   }
 
-  @Delete('id')
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() newUserData: CreateUserDto) {
+    return this.usersService.update(id, newUserData);
+  }
+
+  @Delete(':id')
   async deleteById(@Param('id') id: number) {
     return this.usersService.delete(id);
   }
