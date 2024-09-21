@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -24,7 +29,10 @@ export class UsersService {
       return user;
     }
 
-    throw new BadRequestException('User not found');
+    throw new HttpException(
+      'User with this id does not exist',
+      HttpStatus.NOT_FOUND,
+    );
   }
 
   async getByEmail(email: string) {
@@ -35,7 +43,10 @@ export class UsersService {
       return user;
     }
 
-    throw new BadRequestException('User not found');
+    throw new HttpException(
+      'User with this email does not exist',
+      HttpStatus.NOT_FOUND,
+    );
   }
 
   async delete(id: number) {
