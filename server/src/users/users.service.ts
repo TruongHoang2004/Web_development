@@ -14,7 +14,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async getAllUsers() {
     console.log('Get all users');
