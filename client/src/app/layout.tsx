@@ -10,6 +10,9 @@ const layout_font = Montserrat({
 export const metadata: Metadata = {
   title: "bookingLabour",
   description: "Tinh ban dieu ki",
+  icons: {
+    icon: '/img/favicon/favicon1.png',
+  },
 };
 
 export default function RootLayout({
