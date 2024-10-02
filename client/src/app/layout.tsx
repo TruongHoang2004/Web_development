@@ -1,23 +1,18 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "../styles/globals.css";
+import { Montserrat } from "next/font/google";
 
-
-
-const geistSans = localFont({
-  src: "../public/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../public/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const layout_font = Montserrat({
+  weight: ['400', '500', '700', '600', '800', '900'],
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
   title: "bookingLabour",
   description: "Tinh ban dieu ki",
+  icons: {
+    icon: '/img/favicon/favicon1.png',
+  },
 };
 
 export default function RootLayout({
@@ -28,9 +23,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        <body className={`${layout_font.className} antialiased`}>
         {children}
       </body>
     </html>
