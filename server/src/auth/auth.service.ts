@@ -6,7 +6,7 @@ import { QueryFailedError } from 'typeorm';
 import LoginDto from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import TokenPayload from 'src/interfaces/tokenPayload.interface';
+import TokenPayload from 'src/auth/tokenPayload.interface';
 import { response } from 'express';
 
 @Injectable()
@@ -50,6 +50,10 @@ export class AuthService {
     return user;
   }
 
+  public logout() {
+    return response.clearCookie('jwt');
+  }
+
   public async verifyUser(email: string, password: string) {
     try {
       const user = await this.usersService.getByEmail(email);
@@ -73,6 +77,7 @@ export class AuthService {
   public createAccessToken(userId: number) {
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload);
+    console.log(this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION'));
     return token;
   }
 

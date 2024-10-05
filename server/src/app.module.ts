@@ -7,6 +7,8 @@ import { TasksModule } from './task/tasks.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
+import JwtAuthGuard from './auth/guards/jwtAuthGuard';
 
 @Module({
   imports: [
@@ -20,6 +22,12 @@ import { JwtModule } from '@nestjs/jwt';
     TasksModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    AppService,
+  ],
 })
 export class AppModule {}
