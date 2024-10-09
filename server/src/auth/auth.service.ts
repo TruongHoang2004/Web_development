@@ -77,7 +77,6 @@ export class AuthService {
   public createAccessToken(userId: number) {
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload);
-    console.log(this.configService.get('JWT_ACCESS_TOKEN_EXPIRATION'));
     return token;
   }
 
