@@ -2,6 +2,7 @@
 'use client'
 import styles from '../styles/home_page.module.css';
 import Header from '../components/ui/Header';
+import Footer from '../components/ui/Footer'
 import Image from 'next/image';
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button';
@@ -13,10 +14,19 @@ import { PiPaintRollerDuotone } from "react-icons/pi";
 import { PiFireDuotone } from "react-icons/pi";
 import { useState } from 'react';
 import { IoMdCheckmark } from "react-icons/io";
+import { BiSolidCheckCircle } from "react-icons/bi";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { AiOutlinePlus } from "react-icons/ai";
+
 
 export default function Home() {
   const [activeOption, setActiveOption] = useState(1);
-  const handleClickOptions = (divid) => {
+  const handleClickOptions = (divid: number) => {
     setActiveOption(divid);
   };
 
@@ -74,9 +84,9 @@ export default function Home() {
         <Image src="/img/home_img/home_page_img_4.png" alt="Image 4" width={400} height={100} className='absolute top-0 right-0'/>
         <h2 className='text-green-900 text-5xl w-6/12 text-center absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-extrabold'>Schedule reliable assistance for household chores</h2>
         <div className='absolute top-full left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-16'>
-          <form action="">
+          <form action="" className='flex align-center'>
               <Input type="text" placeholder="What kind of task do you need help with?" className='focus:outline-none text-base font-semibold rounded-r-none inline w-4/5 border-green-900 border-2 py-6 px-4'/>
-              <Button type='submit' className='text-base py-6 px-6 rounded-l-none border-green-900 border-2 border-l-0 bg-lime-600'>SEARCH</Button>
+              <Button type='submit' className='text-base py-6 px-6 rounded-l-none border-green-900 border-2 border-l-0 bg-lime-600 w-1/5 text-lg font-bold'>Create Task</Button>
           </form>
         </div>
       </div>
@@ -119,26 +129,126 @@ export default function Home() {
         </div>
       </div>
       
-      <div className= {`w-8/12 m-auto mt-8 ${options_details[activeOption - 1].bg_color} rounded-2xl p-8 pl-20 pr-4`}>
-        <div className='w-11/12 m-auto relative'>
-          <img src={options_details[activeOption -  1].bg_img_src} alt="" className={`w-full object-cover rounded-xl ${styles.options_details_h}`}/>
-          <div className='rounded-xl absolute bg-slate-100 w-80 h-72 top-1/2 left-24 transform -translate-x-1/2 -translate-y-1/2'>
-            <div className='ml-8 mt-8 mr-4'>
-              <p className='text-3xl font-bold mb-6'>{options_details[activeOption - 1].title}</p>
-              <div className='flex items-start mb-6'>
-                <IoMdCheckmark size={50} className='mr-4 pb-6'/>
-                <p className='font-medium'>{options_details[activeOption - 1].description1}</p>
-              </div>
-              <div className='flex items-start'>
-                <IoMdCheckmark size={50} className='mr-4 pb-6'/>
-                <p className='font-medium'>{options_details[activeOption - 1].description2}</p>
+      <div className='w-full relative'>
+        <Image src="/img/home_img/home_page_img_8.png" alt="Image 4" width={120} height={200} className='absolute top-0 right-0'/>
+        <div className= {`w-8/12 m-auto mt-8 ${options_details[activeOption - 1].bg_color} rounded-2xl p-8 pl-20 pr-4`}>
+          <div className='w-11/12 m-auto relative'>
+            <img src={options_details[activeOption -  1].bg_img_src} alt="" className={`w-full object-cover rounded-xl ${styles.options_details_h}`}/>
+            <div className='rounded-xl absolute bg-slate-100 w-80 h-72 top-1/2 left-24 transform -translate-x-1/2 -translate-y-1/2'>
+              <div className='ml-8 mt-8 mr-4'>
+                <p className='text-3xl font-bold mb-6'>{options_details[activeOption - 1].title}</p>
+                <div className='flex items-start mb-6'>
+                  <IoMdCheckmark size={50} className='mr-4 pb-6'/>
+                  <p className='font-medium'>{options_details[activeOption - 1].description1}</p>
+                </div>
+                <div className='flex items-start'>
+                  <IoMdCheckmark size={50} className='mr-4 pb-6'/>
+                  <p className='font-medium'>{options_details[activeOption - 1].description2}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div className='w-8/12 m-auto mt-24 flex justify-center'>
+        <p className='text-4xl font-bold border-b-2 border-zinc-200 pb-2 px-10'>GET STARTED NOW</p>
+      </div>
+      <div className='w-full relative'>
+        <Image src="/img/home_img/home_page_img_1.png" alt="Image 3" width={100} height={200} className='absolute bottom-0 left-0'/>
+        <Image src="/img/home_img/home_page_img_6.png" alt="Image 4" width={120} height={200} className='absolute top-0 right-0'/>
+        <div className='w-8/12 m-auto mt-10 text-zinc-800 flex flex-wrap gap-x-20 justify-center gap-y-14'>
+          <div className='w-96 h-80'>
+            <img src="/img/home_img/booking.jpg" alt='bg' className='w-full h-full object-cover rounded-xl'/>
+          </div>
+          <div className='w-96 h-80'>
+            <p className='font-bold text-4xl mb-4'>Book trusted help for home task</p>
+            <p className='font-bold text-gray-400 text-lg mb-4'>Get matched with top-rated professionals for all your needs</p>
+            <Button className='mr-4 font-bold'>Book now</Button>
+            <Button className='font-extrabold bg-gray-300 text-black'>Learn more</Button>
+          </div>
+          <div className='w-96 h-80'>
+            <p className='font-bold text-4xl mb-4'>Become a versatile Home Task Experts</p>
+            <p className='font-bold text-gray-400 text-lg mb-4'>Bring expertise, tools, and a can-do attitude to make sure customer's project is completed efficiently.</p>
+            <Button className='mr-4 font-bold'>Start working now</Button>
+            <Button className='font-extrabold bg-gray-300 text-black'>Learn more</Button>
+          </div>
+          <div className='w-96 h-80'>
+            <img src="/img/home_img/working.jpg" alt='bg' className='w-full h-full object-cover rounded-xl object-right'/>
+          </div>
+        </div>
+      </div>
 
-    
+      <div className='bg-zinc-900 text-white w-full mt-24 py-12'>
+        <div className='w-8/12 m-auto flex justify-center mb-16'>
+          <p className='text-4xl font-bold border-b-2 border-zinc-600 pb-2 px-10'>PRICING and POLICIES</p>
+        </div>
+        <div className='w-10/12 m-auto flex flex-wrap gap-x-10 justify-center gap-y-10'>
+            <div className='rounded-xl bg-slate-50 text-slate-900 p-10 w-80 hover:bg-gray-300'>
+              <p className='text-xl font-bold text-gray-500 mb-4'>Personal</p>
+              <p className='text-6xl font-bold mb-10'>$5 <span className='text-lg text-gray-500'>p/transaction</span></p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'> <BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <Button className='mt-10 bg-zinc-800 font-bold text-lg'>Get started</Button>
+            </div>
+            <div className='rounded-xl bg-slate-50 text-slate-900 p-10 w-80 hover:bg-gray-300'>
+              <p className='text-xl font-bold text-gray-500 mb-4'>Personal</p>
+              <p className='text-6xl font-bold mb-10'>$5 <span className='text-lg text-gray-500'>p/transaction</span></p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'> <BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <Button className='mt-10 bg-zinc-800 font-bold text-lg'>Get started</Button>
+            </div>
+            <div className='rounded-xl bg-slate-50 text-slate-900 p-10 w-80 hover:bg-gray-300'>
+              <p className='text-xl font-bold text-gray-500 mb-4'>Personal</p>
+              <p className='text-6xl font-bold mb-10'>$5 <span className='text-lg text-gray-500'>p/transaction</span></p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <p className='text-base mb-2 font-semibold'><BiSolidCheckCircle size={22} className='inline mr-4'/>Guanrantee completion</p>
+              <Button className='mt-10 bg-zinc-800 font-bold text-lg'>Get started</Button>
+            </div>
+        </div>
+        
+        <div className='w-8/12 m-auto flex justify-center mb-8 mt-20'>
+          <p className='text-4xl font-bold border-b-2 border-zinc-600 pb-2 px-10'>FAQ</p>
+        </div>
+        <div className='w-8/12 m-auto p-8 rounded-xl bg-white text-gray-500 pb-12'>
+          <Accordion type="single" collapsible className=''>
+            <AccordionItem value="item-1">
+            <AccordionTrigger className='text-xl font-semibold text-left'>
+              <div className='flex'><AiOutlinePlus className='inline-block mt-1 mr-2'/> Is it accessible?</div>
+            </AccordionTrigger>
+            <AccordionContent className='text-lg font-bold text-zinc-800'>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-2">
+            <AccordionTrigger className='text-xl font-semibold'>
+              <div className='flex'><AiOutlinePlus className='inline-block mt-1 mr-2'/> Is it accessible?</div>
+            </AccordionTrigger>
+            <AccordionContent className='text-lg font-bold text-zinc-800'>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-3">
+            <AccordionTrigger className='text-xl font-semibold'>
+              <div className='flex'><AiOutlinePlus className='inline-block mt-1 mr-2'/> Is it accessible?</div>
+            </AccordionTrigger>
+            <AccordionContent className='text-lg font-bold text-zinc-800'>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </div>
+      <Footer/>
     </div>
   );
 }
