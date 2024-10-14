@@ -22,7 +22,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { AiOutlinePlus } from "react-icons/ai";
-
+import { FaStar } from "react-icons/fa";
+import { BiSolidLeftArrow } from "react-icons/bi";
+import { BiSolidRightArrow } from "react-icons/bi";
 
 export default function Home() {
   const [activeOption, setActiveOption] = useState(1);
@@ -156,29 +158,33 @@ export default function Home() {
       <div className='w-full relative'>
         <Image src="/img/home_img/home_page_img_1.png" alt="Image 3" width={100} height={200} className='absolute bottom-0 left-0'/>
         <Image src="/img/home_img/home_page_img_6.png" alt="Image 4" width={120} height={200} className='absolute top-0 right-0'/>
-        <div className='w-8/12 m-auto mt-10 text-zinc-800 flex flex-wrap gap-x-20 justify-center gap-y-14'>
-          <div className='w-96 h-80'>
-            <img src="/img/home_img/booking.jpg" alt='bg' className='w-full h-full object-cover rounded-xl'/>
+        <div className='w-8/12 m-auto mt-10 text-zinc-800 flex flex-col justify-center gap-y-16'>
+          <div className='flex flex-wrap gap-x-16 justify-center gap-y-8 '>
+            <div className='w-96 h-80'>
+              <img src="/img/home_img/booking.jpg" alt='bg' className='w-full h-full object-cover rounded-xl'/>
+            </div>
+            <div className='w-96'>
+              <p className='font-bold text-4xl mb-4'>Book trusted help for home task</p>
+              <p className='font-bold text-gray-400 text-lg mb-4'>Get matched with top-rated professionals for all your needs</p>
+              <Button className='mr-4 font-bold'>Book now</Button>
+              <Button className='font-extrabold bg-gray-300 text-black'>Learn more</Button>
+            </div>
           </div>
-          <div className='w-96 h-80'>
-            <p className='font-bold text-4xl mb-4'>Book trusted help for home task</p>
-            <p className='font-bold text-gray-400 text-lg mb-4'>Get matched with top-rated professionals for all your needs</p>
-            <Button className='mr-4 font-bold'>Book now</Button>
-            <Button className='font-extrabold bg-gray-300 text-black'>Learn more</Button>
-          </div>
-          <div className='w-96 h-80'>
-            <p className='font-bold text-4xl mb-4'>Become a versatile Home Task Experts</p>
-            <p className='font-bold text-gray-400 text-lg mb-4'>Bring expertise, tools, and a can-do attitude to make sure customer's project is completed efficiently.</p>
-            <Button className='mr-4 font-bold'>Start working now</Button>
-            <Button className='font-extrabold bg-gray-300 text-black'>Learn more</Button>
-          </div>
-          <div className='w-96 h-80'>
-            <img src="/img/home_img/working.jpg" alt='bg' className='w-full h-full object-cover rounded-xl object-right'/>
+          <div className='flex flex-wrap gap-x-16 justify-center gap-y-8'>
+            <div className='w-96'>
+              <p className='font-bold text-4xl mb-4'>Become a versatile Home Task Experts</p>
+              <p className='font-bold text-gray-400 text-lg mb-4'>Bring expertise, tools, and a can-do attitude to make sure customer's project is completed efficiently.</p>
+              <Button className='mr-4 font-bold'>Start working now</Button>
+              <Button className='font-extrabold bg-gray-300 text-black'>Learn more</Button>
+            </div>
+            <div className='w-96 h-80'>
+              <img src="/img/home_img/working.jpg" alt='bg' className='w-full h-full object-cover rounded-xl object-right'/>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className='bg-zinc-900 text-white w-full mt-24 py-12'>
+      <div className='bg-gradient-to-b from-emerald-800 via-emerald-900 to-zinc-950 text-white w-full mt-24 py-12'>
         <div className='w-8/12 m-auto flex justify-center mb-16'>
           <p className='text-4xl font-bold border-b-2 border-zinc-600 pb-2 px-10'>PRICING and POLICIES</p>
         </div>
@@ -212,6 +218,37 @@ export default function Home() {
             </div>
         </div>
         
+        <div className='w-8/12 m-auto flex justify-center mb-8 mt-20'>
+          <p className='text-4xl font-bold border-b-2 border-zinc-600 pb-2 px-10'>REVIEWS</p>
+        </div>
+        <div className='w-8/12 m-auto flex flex-col justify-center gap-y-6 bg-white text-black py-6 rounded-3xl px-8'>
+          <p className='text-gray-700 font-medium text-lg text-center'>
+            “Thank you for building such an empowering tool, especially for designers! 
+            My job was finished in less than a day. Great!
+            Thank you for building such an empowering tool, especially for designers! 
+            My job was finished in less than a day. Great!”
+          </p>
+          <div className='flex justify-center'> 
+            <FaStar className='w-14 h-14 text-yellow-300 mr-2'/>
+            <FaStar className='w-14 h-14 text-yellow-300 mr-2'/>
+            <FaStar className='w-14 h-14 text-yellow-300 mr-2'/>
+            <FaStar className='w-14 h-14 text-yellow-300 mr-2 '/>
+            <FaStar className='w-14 h-14 text-yellow-300 mr-2'/>
+          </div>
+          <div className='flex justify-between items-center'>
+            <BiSolidLeftArrow className='w-16 h-16'/>
+            <div className='flex items-center justify-center gap-x-3'>
+              <img src="/img/home_img/profile.png" alt="" className='w-20 h-20'/>
+              <div>
+                <p className= {`text-xl font-semibold ${styles.mb_2}`}>Karla Ray</p>
+                <p className='text-sm font-semibold text-gray-500'>@kayray</p>
+              </div>
+            </div>
+            <BiSolidRightArrow className='w-16 h-16'/>
+          </div>
+          
+        </div>
+
         <div className='w-8/12 m-auto flex justify-center mb-8 mt-20'>
           <p className='text-4xl font-bold border-b-2 border-zinc-600 pb-2 px-10'>FAQ</p>
         </div>
@@ -247,6 +284,7 @@ export default function Home() {
             </AccordionItem>
           </Accordion>
         </div>
+       
       </div>
       <Footer/>
     </div>
