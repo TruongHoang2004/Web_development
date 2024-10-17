@@ -5,6 +5,7 @@ import RegisterDto from './dto/register.dto';
 import JwtAuthGuard from './guards/jwtAuthGuard';
 import { Public } from 'src/decorators/public.decorator';
 
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

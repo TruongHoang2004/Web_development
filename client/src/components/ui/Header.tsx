@@ -7,10 +7,12 @@ import styles from '../styles/header.module.css';
 const lobster = Lobster({
     subsets: ['latin'],
     weight: ['400'],
+    display: 'swap',
 });
 const kanit = Kanit({
     subsets: ['latin'],
     weight: ['400', '500', '600', '700'],
+    display: 'swap',
 })
 
 const Header: React.FC = () => {

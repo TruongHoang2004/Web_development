@@ -2,11 +2,25 @@
 import { Button, Col, Divider, Form, Input, Row } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import axios from 'axios';
 
 const Login = () => {
 
   const onFinish = async (values: any) => {
-
+    try {
+      console.log('Form values:', values);
+      const response = await axios.post('http://localhost:5000/auth/login', values, { withCredentials: true });
+      console.log(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.log('Response data:', error.response.data);
+        console.log('Response status:', error.response.status);
+        console.log('Response headers:', error.response.headers);
+      } else {
+        console.log("Can't login");
+        console.error(error);re
+      }
+    }
   };
 
   return (
