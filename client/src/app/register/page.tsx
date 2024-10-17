@@ -1,28 +1,54 @@
+'use client'
 import Link from 'next/link';
+import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Register = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+    const router = useRouter();
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:5000/auth/register', formData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            });
+            alert('Registration successful!');
+            router.push('/login');
+        } catch (error) {
+            console.error('Error registering:', error);
+        }
+    };
+
     return (
         <div className="flex justify-center items-center font-[sans-serif] h-full min-h-screen p-4"
-            style={{ backgroundImage: 'url(/qminhancut.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+            style={{ backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
             <div className="max-w-md w-full mx-auto">
-                <form className="bg-opacity-70 bg-white rounded-2xl p-6 shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)]">
+                <form className="bg-opacity-70 bg-white rounded-2xl p-6 shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)]" onSubmit={handleSubmit}>
                     <div className="mb-12">
                         <h3 className="text-gray-800 text-3xl font-extrabold">Register</h3>
                     </div>
 
                     <div>
                         <div className="relative flex items-center">
-                            <input name="firstName" type="text" required
+                            <input name="name" type="text" required
                                 className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
-                                placeholder="First Name" />
-                        </div>
-                    </div>
-
-                    <div className="mt-6">
-                        <div className="relative flex items-center">
-                            <input name="lastName" type="text" required
-                                className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
-                                placeholder="Last Name" />
+                                placeholder="Name" value={formData.name} onChange={handleChange} />
                         </div>
                     </div>
 
@@ -30,7 +56,7 @@ const Register = () => {
                         <div className="relative flex items-center">
                             <input name="email" type="email" required
                                 className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
-                                placeholder="Enter email" />
+                                placeholder="Email" value={formData.email} onChange={handleChange} />
                         </div>
                     </div>
 
@@ -38,24 +64,7 @@ const Register = () => {
                         <div className="relative flex items-center">
                             <input name="password" type="password" required
                                 className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
-                                placeholder="Enter password" />
-                        </div>
-                    </div>
-
-                    <div className="mt-6">
-                        <div className="relative flex items-center">
-                            <input name="confirmPassword" type="password" required
-                                className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
-                                placeholder="Confirm password" />
-                        </div>
-                    </div>
-
-                    <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
-                        <div className="flex items-center">
-                            <input id="terms" name="terms" type="checkbox" className="h-4 w-4 shrink-0 border-gray-300 rounded" required />
-                            <label htmlFor="terms" className="ml-3 block text-sm text-gray-800">
-                                I accept the <a href="javascript:void(0);" className="text-blue-600 font-semibold hover:underline">Terms and Conditions</a>
-                            </label>
+                                placeholder="Password" value={formData.password} onChange={handleChange} />
                         </div>
                     </div>
 
