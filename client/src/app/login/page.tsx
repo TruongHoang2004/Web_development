@@ -25,15 +25,15 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/auth/login', formData, {
+                withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
                 }
             });
-            const {token, user} = response.data;
-            dispatch(login({token,user}));
+            const { token, user } = response.data;
+            dispatch(login({ token, user }));
             alert('Login successful!');
-            router.push('/');
+            await router.push('/');
         } catch (error) {
             console.error('Error logging in:', error);
         }

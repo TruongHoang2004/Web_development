@@ -40,17 +40,21 @@ const Header: React.FC = () => {
     const router = useRouter();
     const handleLogout = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/auth/logout', {}, {withCredentials: true})
+            const response = await axios.post('http://localhost:5000/auth/logout', {}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }, withCredentials: true
+            });
             console.log(response.data.message);
             dispatch(logout());
             alert('Logout successful!');
             router.refresh();
-          } catch (error) {
+        } catch (error) {
             console.error('Logout failed', error);
-          }
-          
-       
-    }
+            alert('Logout failed. Please try again.');
+        }
+    };
 
     return (
         <header className="border-b border-slate-300 text-green-950 py-4">

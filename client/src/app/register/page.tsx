@@ -26,7 +26,7 @@ const Register = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
-                }
+                }, withCredentials: true
             });
             alert('Registration successful!');
             router.push('/login');

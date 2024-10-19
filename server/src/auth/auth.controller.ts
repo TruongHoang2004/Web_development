@@ -12,9 +12,9 @@ export class AuthController {
 
   @Public()
   @Post('login')
-  async login(@Body() loginData: LoginDto, @Res() response) {
+  async login(@Body() loginData: LoginDto, @Res({passthrough: true}) response) {
     const user = await this.authService.login(loginData);
-    const token = this.authService.createAccessToken(user.id);
+    const token = await this.authService.createAccessToken(user.id);
     response.cookie('jwt', token, { httpOnly: true });
     return response.send({
       message: 'Login successful',
