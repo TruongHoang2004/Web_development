@@ -12,7 +12,7 @@ import { PiWrenchDuotone } from "react-icons/pi";
 import { PiTreeDuotone } from "react-icons/pi";
 import { PiPaintRollerDuotone } from "react-icons/pi";
 import { PiFireDuotone } from "react-icons/pi";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { IoMdCheckmark } from "react-icons/io";
 import { BiSolidCheckCircle } from "react-icons/bi";
 import {
@@ -25,6 +25,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
 import { BiSolidRightArrow } from "react-icons/bi";
+import { useSelector } from 'react-redux';
+
 
 export default function Home() {
   const [activeOption, setActiveOption] = useState(1);
@@ -77,6 +79,19 @@ export default function Home() {
     },
   ];
 
+  /*
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
+  useEffect(() => {
+      if(user) {
+        console.log('User information:', user)
+        console.log('Token:', token);
+      } else {
+        console.log("Haven't logged in yet !")
+      }
+  }, [user, token])
+  */
+ 
   return (
     <div>
       <Header />
