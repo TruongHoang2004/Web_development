@@ -1,4 +1,3 @@
-import { Role } from 'src/enum/role.enum';
 import { Review } from 'src/reviews/entities/review.entity';
 import { Task } from 'src/tasks/entities/task.entity';
 import {
@@ -11,24 +10,24 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class Tasker {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ nullable: false })
-  firstName: string;
-
   @Column({ nullable: false, unique: true })
-  email: string;
-
-  @Column({ nullable: false, unique: true })
-  phone: string;
+  userId: number;
 
   @Column({ nullable: false })
-  password: string;
+  category: string;
 
-  @Column({ type: 'enum', nullable: false, enum: Role, default: Role.USER })
-  role: string;
+  @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
+  rate: number;
+
+  @Column({ type: 'int', default: 0 })
+  numberOfTasks: number;
+
+  @Column({ type: 'int', default: 0 })
+  number_of_rates: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
@@ -40,9 +39,9 @@ export class User {
   })
   updatedAt: Date;
 
-  @OneToMany(() => Task, (task) => task.user)
+  @OneToMany(() => Task, (task) => task.tasker)
   tasks: Task[];
 
-  @OneToMany(() => Review, (review) => review.user)
+  @OneToMany(() => Review, (review) => review.tasker)
   reviews: Review[];
 }
