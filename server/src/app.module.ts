@@ -4,6 +4,11 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
+import { UsersModule } from './users/users.module';
+import { TasksModule } from './tasks/tasks.module';
+import { TaskersModule } from './taskers/taskers.module';
+import { ReviewsModule } from './reviews/reviews.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -12,6 +17,11 @@ import { APP_GUARD } from '@nestjs/core';
       isGlobal: true,
     }),
     DatabaseModule,
+    UsersModule,
+    TasksModule,
+    TaskersModule,
+    ReviewsModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [
