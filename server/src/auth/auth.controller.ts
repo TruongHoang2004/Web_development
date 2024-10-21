@@ -5,15 +5,16 @@ import RegisterDto from './dto/register.dto';
 import JwtAuthGuard from './guards/jwtAuthGuard';
 import { Public } from 'src/decorators/public.decorator';
 
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
   @Post('login')
-  async login(@Body() loginData: LoginDto, @Res() response) {
+  async login(@Body() loginData: LoginDto, @Res({passthrough: true}) response) {
     const user = await this.authService.login(loginData);
-    const token = this.authService.createAccessToken(user.id);
+    const token = await this.authService.createAccessToken(user.id);
     response.cookie('jwt', token, { httpOnly: true });
     return response.send({
       message: 'Login successful',
