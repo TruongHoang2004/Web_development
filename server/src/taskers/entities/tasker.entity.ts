@@ -17,9 +17,6 @@ export class Tasker {
   @Column({ nullable: false, unique: true })
   userId: number;
 
-  @Column({ nullable: false })
-  category: string;
-
   @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
   rate: number;
 
